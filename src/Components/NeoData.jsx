@@ -1,18 +1,16 @@
 import React from "react";
 import { makeStyles, Grid, Paper } from "@material-ui/core";
 
-
 const styles = makeStyles(() => ({
   container: {
-    marginTop: "80px"
-  }
-}))
+    marginTop: "80px",
+  },
+}));
 
 export const NeoData = (props) => {
+  const { data, startDate } = props;
 
-  const {data, startDate} = props
-
-  const classes = styles()
+  const classes = styles();
   return (
     <div className={classes.container}>
       {data.map((element) => (
@@ -27,22 +25,25 @@ export const NeoData = (props) => {
             {element.near_earth_objects[startDate].map((neo) => (
               <Paper key={neo.id}>
                 <Grid item style={{ margin: "1em" }}>
-                  <div key={neo.id}>{neo.id}</div>
-                  <div key={neo.name}>{neo.name}</div>
+                  <div key={neo.id}>NEO_Reference_ID: {neo.id}</div>
+                  <div key={neo.name}>Name: {neo.name}</div>
                   <div key={neo.is_potentially_hazardous_asteroid}>
+                    Potentially Hazardous:{" "}
                     {String(neo.is_potentially_hazardous_asteroid)}
                   </div>
                   <div>
-                    {neo.estimated_diameter.feet.estimated_diameter_min}
+                    Estimated Diameter Minimum:{" "}
+                    {neo.estimated_diameter.feet.estimated_diameter_min} ft
                   </div>
                   <div>
-                    {neo.estimated_diameter.feet.estimated_diameter_max}
+                    Estimated Diameter Max:{" "}
+                    {neo.estimated_diameter.feet.estimated_diameter_max} ft
                   </div>
                   <div>
                     {neo.close_approach_data.map((approach) => (
                       <React.Fragment key={approach.epoch_date_close_approach}>
                         <div key={approach.epoch_date_close_approach}>
-                          {approach.close_approach_date}
+                          Approach Date: {approach.close_approach_date}
                         </div>
                       </React.Fragment>
                     ))}
