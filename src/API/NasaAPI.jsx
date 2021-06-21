@@ -2,18 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NeoData } from "../Components/NeoData";
 
+const date = new Date();
+
+const initialDate =
+  date.getFullYear() +
+  "-" +
+  ("0" + (date.getMonth() + 1)).slice(-2) +
+  "-" +
+  ("0" + date.getDate()).slice(-2);
+
 export const NasaAPI = () => {
   const [data, setData] = useState([]);
 
-  const date = new Date();
-
-  const [startDate, setStartDate] = useState(
-    date.getFullYear() +
-      "-" +
-      ("0" + (date.getMonth() + 1)).slice(-2) +
-      "-" +
-      ("0" + date.getDate()).slice(-2)
-  );
+  const [startDate, setStartDate] = useState(initialDate);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +32,7 @@ export const NasaAPI = () => {
 
   return (
     <div>
-      <NeoData data={data} startDate={startDate} />
+      <NeoData data={data} startDate={startDate} setStartDate={setStartDate} />
     </div>
   );
 };
