@@ -1,9 +1,16 @@
 import React from "react";
 import { makeStyles, Grid, Paper } from "@material-ui/core";
+import { HeaderForData } from "./HeaderForData";
 
 const styles = makeStyles(() => ({
+  paper: {
+    width: "1200px",
+  },
+
   container: {
-    marginTop: "80px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
@@ -21,9 +28,12 @@ export const NeoData = (props) => {
           justify="center"
           alignItems="center"
         >
+          <Grid item>
+            <HeaderForData startDate={startDate} />
+          </Grid>
           <div key={element.near_earth_objects}>
             {element.near_earth_objects[startDate].map((neo) => (
-              <Paper key={neo.id}>
+              <Paper key={neo.id} className={classes.paper}>
                 <Grid item style={{ margin: "1em" }}>
                   <div key={neo.id}>NEO_Reference_ID: {neo.id}</div>
                   <div key={neo.name}>Name: {neo.name}</div>
