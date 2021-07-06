@@ -1,17 +1,29 @@
 import React from "react";
-import { Typography, Button, makeStyles, Grid } from "@material-ui/core";
+import { Typography, Button, makeStyles } from "@material-ui/core";
 import StarGazer from "../utils/Images/star-gazing.jpg";
 
-const styles = makeStyles(() => ({
+const styles = makeStyles((theme) => ({
   container: {
     color: "black",
-    width: "1200px",
+    width: "1000px",
     backgroundColor: "#d3d3d3",
     backgroundImage: "url(" + StarGazer + ")",
     height: "600px",
     backgroundSize: "cover",
     position: "relative",
-    margin: 20
+    [theme.breakpoints.down('lg')]: {
+      width: "1000px"
+    },
+    [theme.breakpoints.down('md')]: {
+      width: "800px"
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: "600px"
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: "350px"
+    },
+    
   },
 
   button: {
@@ -20,13 +32,20 @@ const styles = makeStyles(() => ({
 
   text: {
     color: "white",
-    fontSize: "40px"
+    fontSize: "40px",
+    [theme.breakpoints.down('xs')]: {
+      fontSize: "30px"
+    },
   },
 
   textContainer: {
     position: "absolute",
     bottom: 30,
-    left: 50
+    left: 50,
+    [theme.breakpoints.down('xs')]: {
+      bottom: 10,
+      left: 30,
+    },
   
   },
 }));

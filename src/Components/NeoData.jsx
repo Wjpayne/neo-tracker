@@ -1,18 +1,25 @@
 import React from "react";
-import { makeStyles, Grid, Paper } from "@material-ui/core";
+import { makeStyles, Paper } from "@material-ui/core";
+import { Grid } from "@material-ui/core"
 import { HeaderForData } from "./HeaderForData";
 
-const styles = makeStyles(() => ({
+const styles = makeStyles((theme) => ({
   paper: {
-    width: "1200px",
+    width: "1000px",
+    [theme.breakpoints.down('lg')]: {
+      width: "1000px"
+    },
+    [theme.breakpoints.down('md')]: {
+      width: "800px"
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: "600px"
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: "350px"
+    },
   },
 
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "1200px"
-  },
 }));
 
 export const NeoData = (props) => {
