@@ -11,6 +11,7 @@ const styles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    width: "1200px"
   },
 }));
 
