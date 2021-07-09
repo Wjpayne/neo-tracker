@@ -1,6 +1,9 @@
 import React from "react";
 import { Typography, Button, makeStyles } from "@material-ui/core";
 import StarGazer from "../utils/Images/star-gazing.jpg";
+import DateRangeIcon from '@material-ui/icons/DateRange'
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+
 
 const styles = makeStyles((theme) => ({
   container: {
@@ -28,6 +31,10 @@ const styles = makeStyles((theme) => ({
 
   button: {
     color: "white",
+    textDecoration: "underline"
+  
+    
+    
   },
 
   text: {
@@ -46,6 +53,11 @@ const styles = makeStyles((theme) => ({
       bottom: 10,
       left: 30,
     },
+
+  
+
+
+  
   
   },
 }));
@@ -60,8 +72,10 @@ export const HeaderForData = (props) => {
     <div className={classes.container}>
       <div className={classes.textContainer}>
         <Typography className={classes.text}>{newDate}</Typography>
-        <Button className={classes.button}>Change Date</Button>
+        <Button endIcon = {<DateRangeIcon/>} disableRipple className={classes.button}>Change Date</Button>
+
       </div>
+      
     </div>
   );
 };
