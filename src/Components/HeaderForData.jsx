@@ -31,10 +31,8 @@ const styles = makeStyles((theme) => ({
 
   button: {
     color: "white",
-    textDecoration: "underline"
-  
-    
-    
+    textDecoration: "underline",
+ 
   },
 
   text: {
