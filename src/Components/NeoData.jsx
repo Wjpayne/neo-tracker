@@ -1,29 +1,55 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { makeStyles, Paper } from "@material-ui/core";
-import { Grid } from "@material-ui/core"
+import { Grid } from "@material-ui/core";
 import { HeaderForData } from "./HeaderForData";
+import axios from "axios";
 
 const styles = makeStyles((theme) => ({
   paper: {
     width: "1000px",
-    [theme.breakpoints.down('lg')]: {
-      width: "1000px"
+    [theme.breakpoints.down("lg")]: {
+      width: "1000px",
     },
-    [theme.breakpoints.down('md')]: {
-      width: "800px"
+    [theme.breakpoints.down("md")]: {
+      width: "800px",
     },
-    [theme.breakpoints.down('sm')]: {
-      width: "600px"
+    [theme.breakpoints.down("sm")]: {
+      width: "600px",
     },
-    [theme.breakpoints.down('xs')]: {
-      width: "350px"
+    [theme.breakpoints.down("xs")]: {
+      width: "350px",
     },
   },
-
 }));
 
+const date = new Date();
+
+const initialDate =
+  date.getFullYear() +
+  "-" +
+  ("0" + (date.getMonth() + 1)).slice(-2) +
+  "-" +
+  ("0" + date.getDate()).slice(-2);
+
 export const NeoData = (props) => {
-  const { data, startDate } = props;
+  const [data, setData] = useState([]);
+
+  const [startDate, setStartDate] = useState(initialDate);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const neoDate = await axios.get(
+        `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${startDate}&api_key=${process.env.REACT_APP_NASA_KEY}`
+      );
+
+      setData((result) => [...result, neoDate.data]);
+
+    };
+
+    fetchData();
+  }, [startDate]);
+
+  console.log(data);
 
   const classes = styles();
   return (
@@ -37,7 +63,7 @@ export const NeoData = (props) => {
           alignItems="center"
         >
           <Grid item>
-            <HeaderForData startDate={startDate} />
+            <HeaderForData startDate={startDate} setStartDate={setStartDate} />
           </Grid>
           <div key={element.near_earth_objects}>
             {element.near_earth_objects[startDate].map((neo) => (
@@ -59,11 +85,11 @@ export const NeoData = (props) => {
                   </div>
                   <div>
                     {neo.close_approach_data.map((approach) => (
-                      <React.Fragment key={approach.epoch_date_close_approach}>
+                      <div key={approach.epoch_date_close_approach}>
                         <div key={approach.epoch_date_close_approach}>
                           Approach Date: {approach.close_approach_date}
                         </div>
-                      </React.Fragment>
+                      </div>
                     ))}
                   </div>
                 </Grid>
