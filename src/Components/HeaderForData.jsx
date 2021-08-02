@@ -61,11 +61,8 @@ export const HeaderForData = (props) => {
 
   const newDate = new Date(startDate + "T00:00:00").toDateString();
 
-  const [newSelectedDate, setNewDate] = useState(newDate);
+  const [newSelectedDate, setNewDate] = useState(new Date());
 
-
-
-  
   return (
     <div className={classes.container}>
       <div className={classes.textContainer}>

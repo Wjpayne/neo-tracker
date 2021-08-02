@@ -43,7 +43,6 @@ export const NeoData = (props) => {
       );
 
       setData((result) => [...result, neoDate.data]);
-
     };
 
     fetchData();
