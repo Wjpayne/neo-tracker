@@ -30,7 +30,6 @@ const styles = makeStyles((theme) => ({
 
   button: {
     color: "white",
-    textDecoration: "underline",
   },
 
   text: {
@@ -50,6 +49,10 @@ const styles = makeStyles((theme) => ({
       left: 30,
     },
   },
+
+  datePicker: {
+    backgroundColor: "white",
+  },
 }));
 
 export const HeaderForData = (props) => {
@@ -67,28 +70,23 @@ export const HeaderForData = (props) => {
     <div className={classes.container}>
       <div className={classes.textContainer}>
         <Typography className={classes.text}>{newDate}</Typography>
-        <Button
-          onClick={() => setOpen(true)}
-          endIcon={<DateRangeIcon />}
-          disableRipple
-          className={classes.button}
-        >
-          Change Date
-        </Button>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <form>
           <DatePicker
+            className={classes.datePicker}
             value={newSelectedDate}
-            TextFieldComponent={() => null}
             open={open}
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
-            onChange={
-              (setNewDate,
-              () => setStartDate(newSelectedDate),
-              () => console.log(newSelectedDate))
-            }
+            onChange={(newValue) => {
+              setNewDate(newValue);
+              setStartDate(newValue)
+            }}
+            format="yyyy-MM-dd"
           />
-        </MuiPickersUtilsProvider>
+    
+          </form>
+        </MuiPickersUtilsProvider> */}
       </div>
     </div>
   );
